@@ -56,15 +56,17 @@ int main() {
 char *substring(char *string, int position, int length) {
 	char *pointer;
 	int c;
-	pointer = (char *) malloc(length + 1);
+	if (position < 0 || position + length > strlen(string)) {
+		printf("overflow or underflow oucrred please enter valid position and length");
+		exit(1);
+	}
+	pointer = malloc(length + 1);
 	if (pointer == NULL) {
 		printf("Unable to allocate memory.\n");
 		exit(1);
 	}
-
-	for (c = 0; c < length - position; c++)
+	for (c = 0; c < length; c++)
 		*(pointer + c) = string[position + c];
 	*(pointer + c) = '\0';
-
 	return pointer;
 }

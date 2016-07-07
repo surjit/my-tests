@@ -9,9 +9,15 @@ char *get_token(char *regex, char *str);
 int main() {
 
 	char *regex = "^\\/([a-z0-9]+)\\/phpmyadmin/";
-	char *str = "/YYabc1234500/phpmyadmin/stlackflow";
+	char *str = "/abc1234500/phpmyadmin/stlackflow";
 
 	char *token = get_token(regex, str);
+	size_t token_len = strlen(token);
+	size_t str_len = strlen(str);
+
+	printf("%s \n", substring(str, token_len + 1, str_len - token_len - 1));
+
+
 	if (NULL == token) {
 		printf("Not Match \n");
 	} else {
